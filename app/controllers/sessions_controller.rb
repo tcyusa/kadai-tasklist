@@ -3,12 +3,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'Success'
-      redirect_to 'tasks/index'
+      redirect_to tasks_url
     else
       flash.now[:danger] = 'Failed'
       render 'new'
